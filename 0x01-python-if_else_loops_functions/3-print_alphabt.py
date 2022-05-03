@@ -1,8 +1,7 @@
 #!/usr/bin/python3
-letter = ord('a')
-while letter <= ord('z'):
-    if (letter == ord('e') or letter == ord('q')):
-        letter += 1
+for i in range(ord('a'), ord('z')):
+    if (i == ord('e') or i == ord('q')):
+        i += 1
     else:
-        print(chr(letter), end="")
-        letter += 1
+        print(chr(i), end="")
+        i += 1
