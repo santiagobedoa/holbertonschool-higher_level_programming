@@ -1,5 +1,3 @@
 #!/usr/bin/python3
-number = 0
-while number <= 98:
-    print(f"{number} = {hex(number)}")
-    number += 1
+for i in range(0, 99):
+    print(f"{i} = {hex(i)}")
