@@ -10,4 +10,4 @@ if __name__ == "__main__":
         print(f"{len(argv)} arguments:")
         for i, j in enumerate(argv):
             if (i != 0):
-                print(f"{i - 1}: {j}")
+                print(f"{i}: {j}")
