@@ -3,28 +3,23 @@
 /**
  * reverse_linked_list - function that reverse a linked list
  * @head: head of the linked list
- * Return: reversed linked list
+ * Return: void
  */
-listint_t *reverse_linked_list(listint_t *head)
+void reverse_linked_list(listint_t **head)
 {
-	listint_t *current_node;
-	listint_t *next_node;
+	listint_t *prev = NULL;
+	listint_t *current = *head;
+	listint_t *next = NULL;
 
-	if (head == NULL)
+	while (current)
 	{
-		return (NULL);
-	}
-	current_node = head;
-	next_node = current_node->next;
-	current_node->next = NULL;
-	while (next_node != NULL)
-	{
-		current_node = next_node;
-		next_node = next_node->next;
-		current_node->next = head;
-		head = current_node;
-	}
-	return (head);
+		next = current->next;
+        	current->next = prev;
+        	prev = current;
+        	current = next;
+    	}
+
+    	*head = prev;
 }
 
 /**
@@ -37,7 +32,6 @@ int is_palindrome(listint_t **head)
 	listint_t *copy_1 = *head;
 	listint_t *copy_2 = *head;
 	listint_t *copy_3 = *head;
-	listint_t *reversed;
 	int num_of_nodes = 0;
 	int half = 0;
 
@@ -55,15 +49,15 @@ int is_palindrome(listint_t **head)
 		half += 1;
 		copy_2 = copy_2->next;
 	}
-	reversed = reverse_linked_list(*head);
-	while (copy_3 && reversed)
+	reverse_linked_list(&copy_2);
+	while (copy_3 && copy_2)
 	{
-		if (copy_3->n != reversed->n)
+		if (copy_3->n != copy_2->n)
 		{
 			return (0);
 		}
 		copy_3 = copy_3->next;
-		reversed = reversed->next;
+		copy_2 = copy_2->next;
 	}
 	return (1);
 }
