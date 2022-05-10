@@ -5,5 +5,5 @@ def simple_delete(a_dictionary, key=""):
     try:
         del a_dictionary[key]
         return a_dictionary
-    except Error as e:
+    except Exception as e:
         return a_dictionary
