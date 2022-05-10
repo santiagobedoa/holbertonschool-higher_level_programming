@@ -2,6 +2,8 @@
 
 
 def roman_to_int(s):
+    if s is None or type(s) != str:
+        return 0
     hm = {
             "I": 1,
             "V": 5,
