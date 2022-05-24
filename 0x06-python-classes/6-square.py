@@ -33,8 +33,8 @@ class Square:
 
     @position.setter
     def position(self, value):
-        if all(pos.isdigit() for pos in self.__position) and\
-           len(self.__position) == 2 and\
+        if all(pos.isdigit() for pos in value) and\
+           len(value) == 2 and\
            type(value) is tuple:
             self.__position = value
         else:
