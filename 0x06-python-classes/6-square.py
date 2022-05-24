@@ -35,7 +35,7 @@ class Square:
     def position(self, value):
         if all(pos.isdigit() for pos in self.__position) and\
            len(self.__position) == 2 and\
-           type(value) in not tuple:
+           type(value) is tuple:
             self.__position = value
         else:
             raise TypeError("position must be a tuple of 2 positive integers")
