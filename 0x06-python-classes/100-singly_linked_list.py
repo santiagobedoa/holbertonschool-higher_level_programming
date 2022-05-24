@@ -58,6 +58,13 @@ class Node:
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
+    def __str__(self):
+        """String representation of Node instance
+        Returns:
+            Formatted string representing the node
+        """
+        return str(self.__data)
+
 
 """Defines a single linked list"""
 class SinglyLinkedList:
@@ -92,3 +99,17 @@ class SinglyLinkedList:
             tmp = tmp.next_node
         new.next_node = tmp.next_node
         tmp.next_node = new
+
+        def __str__(self):
+            """String representation of SinglyLinkedList instance
+            Returns:
+                Formatted string representing the linked list
+            """
+            string = str()
+            tmp = self.__head
+            while tmp is not None:
+                string += str(tmp)
+                if tmp.next_node is not None:
+                    string += "\n"
+                tmp = tmp.next_node
+            return string
