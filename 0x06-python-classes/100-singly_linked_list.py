@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""defines a Node"""
 
 class Node:
     """Represents a node in a singly linked list
@@ -59,6 +59,7 @@ class Node:
         self.__next_node = value
 
 
+"""Defines a single linked list"""
 class SinglyLinkedList:
     """Represents a single linked list
     Attributes:
