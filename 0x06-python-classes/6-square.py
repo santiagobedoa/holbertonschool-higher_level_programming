@@ -6,9 +6,29 @@ class Square:
     """Represents a Square"""
 
     def __init__(self, size=0, position=(0, 0)):
-        """initializes"""
-        self.__size = size
-        self.__position = position
+        """Initializes Square"""
+        self.size = size
+        self.position = position
+
+    @property
+    def position(self):
+        return self.__position
+
+    @position.setter
+    def position(self, value):
+        self.__position = value
+        if type(value) is not tuple:
+            self.__position = None
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif len(value) != 2:
+            self.__position = None
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif type(value[0]) is not int or type(value[1]) is not int:
+            self.__position = None
+            raise TypeError("position must be a tuple of 2 positive integers")
+        elif value[0] < 0 or value[1] < 0:
+            self.__position = None
+            raise TypeError("position must be a tuple of 2 positive integers")
 
     @property
     def size(self):
@@ -16,37 +36,22 @@ class Square:
 
     @size.setter
     def size(self, value):
+
+        self.__size = value
         if type(value) is not int:
             raise TypeError("size must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("size must be >= 0")
-        else:
-            self.__size = value
 
     def area(self):
-        """calculates the square's area"""
-        return (self.__size) ** 2
-
-    @property
-    def position(self):
-        return (self.__position)
-
-    @position.setter
-    def position(self, value):
-        if all(pos.isdigit() for pos in value) and\
-           len(value) == 2 and\
-           type(value) is tuple:
-            self.__position = value
-        else:
-            self.__position == None
-            raise TypeError("position must be a tuple of 2 positive integers")
+        return self.__size ** 2
 
     def my_print(self):
-        """prints a square"""
+        """ this function prints in stdout the square with the character #"""
         if self.__size == 0:
-            print("")
+            print()
             return
         for i in range(self.__position[1]):
-            print("")
-        for j in range(self.__size):
-            print(f"{self.__position[0] * ' '}{self.__size * '#'}")
+            print()
+        for x in range(self.__size):
+            print("{}{}".format(" " * self.position[0], "#" * self.__size))
