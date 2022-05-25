@@ -55,3 +55,21 @@ class Square:
             print()
         for x in range(self.__size):
             print("{}{}".format(" " * self.position[0], "#" * self.__size))
+
+    def str_representation(self):
+        """returns the string representation of the square with the character #"""
+        string = str()
+        if self.__size == 0:
+            return "\n"
+        for i in range(self.__position[1]):
+            string += "\n"
+        for i in range(self.size):
+            for j in range(self.position[0]):
+                string += " "
+            for j in range(self.size):
+                string += "#"
+            string += "\n"
+        return string
+
+    def __str__(self):
+        return self.str_representation()[:-1]
