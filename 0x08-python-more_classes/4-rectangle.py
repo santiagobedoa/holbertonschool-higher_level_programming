@@ -48,7 +48,6 @@ class Rectangle:
             raise ValueError("height must be >= 0")
         self.__height = value
 
-
     def area(self):
         """ Returns the area of the Rectangle """
         return self.__width * self.__height
@@ -67,4 +66,4 @@ class Rectangle:
 
     def __repr__(self):
         """ Returns formal string representation """
-        return "Rectangle(" + str(self.__width) + ", " + str(self.__height) + ")"
+        return "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"

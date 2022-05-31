@@ -19,11 +19,11 @@ class Rectangle:
         """ Returns string representation with '#' """
         if not self.__width or not self.__height:
             return " "
-        return ((str(self.print_symbol) * self.__width + '\n') * self.height)[:-1]
+        return ((str(self.print_symbol) * self.width + '\n') * self.height)[:-1]
 
     def __repr__(self):
         """ Returns formal string representation """
-        return "Rectangle(" + str(self.__width) + ", " + str(self.__height) + ")"
+        return "Rectangle(" + str(self.width) + ", " + str(self.height) + ")"
 
     def __del__(self):
         """ Destructor """
