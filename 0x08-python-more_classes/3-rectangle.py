@@ -61,5 +61,5 @@ class Rectangle:
     def __str__(self):
         """ Returns string representation with '#' """
         if self.__width == 0 or self.__height == 0:
-            return " "
+            return ""
         return (("#" * self.__width + '\n') * self.height)[:-1]
