@@ -19,7 +19,9 @@ class Rectangle:
         """ Returns string representation with '#' """
         if not self.__width or not self.__height:
             return ""
-        return ((str(self.print_symbol) * self.width + '\n') * self.height)[:-1]
+        w = self.width
+        h = self.height
+        return ((str(self.print_symbol) * w + '\n') * h)[:-1]
 
     def __repr__(self):
         """ Returns formal string representation """
