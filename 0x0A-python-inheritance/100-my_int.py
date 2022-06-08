@@ -3,6 +3,8 @@
 
 
 class MyInt(int):
+    '''subclass MyInt'''
+
     def __eq__(self, other):
         '''Override equals, inverting it'''
         return int(self) != int(other)
