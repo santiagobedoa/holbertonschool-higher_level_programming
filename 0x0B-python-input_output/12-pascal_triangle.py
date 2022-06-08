@@ -5,6 +5,9 @@
 def pascal_triangle(n):
     ''' Returns list that represents a pascal triangle of n size '''
 
+    if (n <= 0):
+        return []
+
     triangle = [[1]]
 
     for row in range(n - 1):  # subtract 1 since we initialize the list with 1
