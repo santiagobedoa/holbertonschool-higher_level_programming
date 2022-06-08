@@ -8,7 +8,7 @@ load_from_json_file = __import__('6-load_from_json_file').load_from_json_file
 
 def main():
     list_args = sys.argv[1:]
-    
+
     if os.path.exists("add_item.json"):
         list_args = load_from_json_file("add_item.json") + list_args
 
