@@ -65,13 +65,32 @@ class Rectangle(Base):
 
     def display(self):
         ''' Prints in stdout the Rectangle instance '''
-        for row in range(self.height):
-            for col in range(self.width):
-                print("#", end="")
-            print("")
+        render = '\n' * self.y + \
+                 (' ' * self.x + '#' * self.width + '\n') * self.height
+        print(render, end="")
 
     def __str__(self):
         ''' Returns string info about the Rectangle instance '''
         return '[{}] ({}) {}/{} - {}/{}'.\
             format(type(self).__name__, self.id, self.x, self.y, self.width,
                    self.height)
+
+    def __update(self, id=None, width=None, height=None, x=None, y=None):
+        ''' Internal method that updates instance attributes '''
+        if id is not None:
+            self.id = id
+        if width is not None:
+            self.width = width
+        if height is not None:
+            self.height = height
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
+
+    def update(self, *args, **kwargs):
+        ''' Update the Rectangle attributes '''
+        if args:
+            self.__update(*args)
+        elif kwargs:
+            self.__update(**kwargs)
