@@ -85,15 +85,15 @@ class Base:
         from models.square import Square
         list_objs = list()
         with open(f"{cls.__name__}.csv", "r", newline="",
-                encoding="utf-8") as f:
+                  encoding="utf-8") as f:
             file = csv.reader(f)
             for row in file:
                 attrs = [int(element) for element in row]
                 if cls is Rectangle:
                     d = {"id": attrs[0], "width": attrs[1], "height": attrs[2],
-                            "x": attrs[3], "y": attrs[4]}
+                         "x": attrs[3], "y": attrs[4]}
                 else:
                     d = {"id": attrs[0], "size": attrs[1],
-                            "x": attrs[2], "y": attrs[3]}
+                         "x": attrs[2], "y": attrs[3]}
                 list_objs.append(cls.create(**d))
         return list_objs
