@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 ''' Module for Base class '''
 import json
+import csv
 
 
 class Base:
@@ -37,3 +38,25 @@ class Base:
         if json_string is None or not json_string:
             return []
         return json.loads(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        ''' Returns a new instance with attrs specified in dictionary '''
+        from models.rectangle import Rectangle
+        from models.square import Square
+        if cls is Rectangle:
+            new = Rectangle(1, 1)
+        else:
+            new = Square(1)
+        new.update(**dictionary)
+        return new
+
+    @classmethod
+    def load_from_file(cls):
+        ''' Returns a list of instances loaded from JSON file '''
+        import os
+        file_path = f"{cls.__name__}.json"
+        if not os.path.isfile(file_path):
+            return []
+        with open(file_path, "r", encoding="utf-8") as f:
+            return [cls.create(**d) for d in cls.from_json_string(f.read())]
