@@ -95,5 +95,5 @@ class Base:
                 else:
                     d = {"id": attrs[0], "size": attrs[1],
                             "x": attrs[2], "y": attrs[3]}
-            list_objs.append(cls.create(**d))
+                list_objs.append(cls.create(**d))
         return list_objs
