@@ -1,7 +1,7 @@
 #!/usr/bin/node
-function callMeMOby (x, theFunction) {
-  for (let i = 0; i <= x; i++) {
+function callMeMoby (x, theFunction) {
+  for (let i = 0; i < x; i++) {
     theFunction();
   }
 }
-module.exports.callMeMOby = callMeMOby;
+module.exports.callMeMoby = callMeMoby;
