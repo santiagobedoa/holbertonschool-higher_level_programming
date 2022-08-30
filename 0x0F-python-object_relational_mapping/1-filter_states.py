@@ -1,33 +1,43 @@
 #!/usr/bin/python3
-"""List all states that starts with N"""
+"""
+Write a script that lists all states with a name
+starting with N (upper N) from the database hbtn_0e_0_usa:
+"""
+from sys import argv
+import MySQLdb
 
-if __name__ == "__main__":
-    import MySQLdb
-    from sys import argv
 
-    if (len(argv) == 4):
-        user = argv[1]
-        password = argv[2]
-        database = argv[3]
-        config = {
-            'user': user,
-            'passwd': password,
-            'host': 'localhost',
-            'db': database,
-            'port': 3306,
-        }
+def filter_states():
+    """ SQL INFO FROM ARGV """
+    sql_usrname = argv[1]
+    sql_password = argv[2]
+    sql_database = argv[3]
+    host = "localhost"
+    port = 3306
 
-        db = MySQLdb.connect(**config)
-        cursor = db.cursor()
+    """ SETTING MySQLdb Connection """
+    db_connection = MySQLdb.connect(
+        port=port,
+        host=host,
+        user=sql_usrname,
+        password=sql_password,
+        database=sql_database)
 
-        query = """
-            SELECT * FROM states WHERE BINARY
-        name LIKE 'N%' ORDER BY id ASC"""
-        cursor.execute(query)
+    cur = db_connection.cursor()
 
-        data = cursor.fetchall()
-        [print(state) for state in data]
-        cursor.close()
-        db.close()
-    else:
-        """print("Usage: ./0-select_states.py username password database")"""
+    """ EXECUTING SQL QUERY """
+    cur.execute(
+        "SELECT id, name FROM states WHERE name\
+            LIKE BINARY 'N%' ORDER BY states.id ASC")
+
+    """ FETCHING DATA """
+    states = cur.fetchall()
+
+    for state in states:
+        print(state)
+
+    db_connection.close()
+
+
+if __name__ == '__main__':
+    filter_states()
