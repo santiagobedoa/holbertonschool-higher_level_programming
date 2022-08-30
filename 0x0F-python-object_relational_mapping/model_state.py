@@ -1,4 +1,4 @@
-#!/usr/bin/pyton3
+#!/usr/bin/python3
 """contains the class definition of a State and an instance Base"""
 
 from sqlalchemy import Column, Integer, String
