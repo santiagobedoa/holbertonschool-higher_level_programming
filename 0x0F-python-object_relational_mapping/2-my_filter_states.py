@@ -1,44 +1,44 @@
 #!/usr/bin/python3
 """List all states that matches the arg"""
 
-if __name__ == "__main__":
-    import MySQLdb
-    from sys import argv
+from sys import argv
+import MySQLdb
 
-    if (len(argv) == 5):
-        user = argv[1]
-        password = argv[2]
-        database = argv[3]
-        argument = argv[4]
-        config = {
-            'user': user,
-            'passwd': password,
-            'host': 'localhost',
-            'db': database,
-            'port': 3306,
-        }
-        db = MySQLdb.connect(**config)
 
-        with db.cursor() as cursor:
-            """DON'T DO QUERY IN THIS FORM"""
-            query = """
-                SELECT * FROM states WHERE name
-                LIKE '{:s}' ORDER BY id ASC""".format(argument)
+def my_filter_states():
+    """ SQL INFO FROM ARGV """
+    sql_usrname = argv[1]
+    sql_password = argv[2]
+    sql_database = argv[3]
+    usr_input = argv[4]
 
-            cursor.execute(query)
+    host = "localhost"
+    port = 3306
 
-            data = cursor.fetchall()
+    """ SETTING MySQLdb Connection """
+    db_connection = MySQLdb.connect(
+        port=port,
+        host=host,
+        user=sql_usrname,
+        password=sql_password,
+        database=sql_database
+        )
 
-        if not data:
-            """
-            print("Doesn't exist {0} state".format(argument))
-            """
-        else:
-            [print(state) for state in data]
+    cur = db_connection.cursor()
 
-        db.close()
+    """ EXECUTING SQL QUERY """
+    cur.execute(
+        "SELECT * FROM states WHERE name LIKE BINARY '{}'\
+             ORDER BY states.id ASC".format(usr_input))
 
-    else:
-        """
-        print("Usage: ./0-select_states.py username password database state")
-        """
+    """ FETCHING DATA """
+    states = cur.fetchall()
+
+    for state in states:
+        print(state)
+
+    db_connection.close()
+
+
+if __name__ == '__main__':
+    my_filter_states()
