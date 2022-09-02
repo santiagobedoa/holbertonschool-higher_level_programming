@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """
 Holberton challenge
+Python script that takes 2 arguments in order to solve this challenge
 """
 
 from sys import argv
